@@ -135,7 +135,7 @@ class Item
 
                 // Detect columns
                 $query = '
-                    SELECT column_name, data_type, column_key
+                    SELECT COLUMN_NAME, DATA_TYPE, COLUMN_KEY
                     FROM information_schema.columns
                     WHERE table_name = ?
                     AND table_schema = ?';
@@ -147,9 +147,9 @@ class Item
                 try {
                     $stmt->execute();
                     foreach ($stmt as $row) {
-                        $columns[$row->column_name] = null;
-                        if ($row->column_key == 'PRI') {
-                            $this->primaryKey($row->column_name);
+                        $columns[$row->COLUMN_NAME] = null;
+                        if ($row->COLUMN_KEY == 'PRI') {
+                            $this->primaryKey($row->COLUMN_NAME);
                         }
                     }
 
